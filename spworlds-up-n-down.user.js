@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SPWorlds - Upvotes and Downvotes viewer
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/SuhEugene/SPWorlds-UpAndDown
 // @version      2024-08-07
 // @description  Отображает апвоуты и даунвоуты поста, вместо их разницы.
 // @author       SuhEugene, DearFox
