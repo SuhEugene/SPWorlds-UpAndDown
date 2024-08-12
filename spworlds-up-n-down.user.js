@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      2024-08-07
 // @description  Отображает апвоуты и даунвоуты поста, вместо их разницы.
-// @author       SuhEugene, DearFox and ChatGPT 4o
+// @author       SuhEugene, DearFox
 // @match        https://spworlds.ru/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=spworlds.ru
 // @grant        none
