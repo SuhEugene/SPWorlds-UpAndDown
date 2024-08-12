@@ -1,5 +1,31 @@
-[Установить скрипт](spworlds-up-n-down.user.js?raw=true)
+<table>
+  <tr><td align="center" width="2000"><b>
+    <a href="spworlds-up-n-down.user.js?raw=true">Установить скрипт</a>
+  </b></td></tr>
+</table>
 
-Сделано специально для [spworlds SP](https://spworlds.ru/sp/)
+<h1 align="center">SPWorlds - Upvotes and Downvotes viewer</h1>
 
-Спасибо Фурку за инфу и ЧатГПТ за помощь в кодировании потому что мне было лень писать.
+Это проект, который позволяет смотреть апвоуты и даунвоуты на постах
+[сайта SPWorlds](https://spworlds.ru/).
+
+## Скриншоты
+
+|          Стандартный пост          |         После работы скрипта         |
+| :--------------------------------: | :----------------------------------: |
+| ![Default](media/post_default.png) | ![Improved](media/post_improved.png) |
+
+При сбое скрипта, апвоуты и даунвоуты отображаются после времени создания:
+
+<details>
+  <summary>Пост при сбое скрипта</summary>
+  <img src="media/post_fallback.png" />
+</details>
+
+## Авторы и лицензия
+
+Автор оригинального скрипта - DearFox.
+
+Оригинальный скрипт не был лицензирован.
+Данный скрипт, начиная с коммита 3cc20fadf0a471cef267a7c6cb7d3a375de1163e,
+лицензируется по [лицензии MIT](LICENSE).
