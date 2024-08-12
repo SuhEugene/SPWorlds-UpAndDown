@@ -11,9 +11,16 @@
 
 ## Скриншоты
 
-|          Стандартный пост          |         После работы скрипта         |
-| :--------------------------------: | :----------------------------------: |
-| ![Default](media/post_default.png) | ![Improved](media/post_improved.png) |
+<table>
+  <thead>
+    <th width="50%" align="center">Стандартный пост</th>
+    <th width="50%" align="center">После работы скрипта</th>
+  </thead>
+  <tr>
+    <td><img src="media/post_default.png"></td>
+    <td><img src="media/post_improved.png"></td>
+  </tr>
+</table>
 
 При сбое скрипта, апвоуты и даунвоуты отображаются после времени создания:
 
