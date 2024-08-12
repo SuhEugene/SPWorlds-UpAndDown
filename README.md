@@ -1,4 +1,4 @@
-[Установить скрипт](https://github.com/DearFox/Spworlds-SP-Upvotes-and-Downvotes-viewer/raw/main/Spworlds%20SP%20-%20Upvotes%20and%20Downvotes%20viewer.user.js)
+[Установить скрипт](spworlds-up-n-down.user.js?raw=true)
 
 Сделано специально для [spworlds SP](https://spworlds.ru/sp/)
 
