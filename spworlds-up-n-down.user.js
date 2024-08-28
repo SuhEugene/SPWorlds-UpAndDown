@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SPWorlds - Upvotes and Downvotes viewer
 // @namespace    https://github.com/SuhEugene/SPWorlds-UpAndDown
-// @version      2024-08-07
+// @version      2024-08-28
 // @description  Отображает апвоуты и даунвоуты поста, вместо их разницы.
 // @author       SuhEugene, DearFox
 // @match        https://spworlds.ru/*
@@ -22,7 +22,7 @@
     '<p style="background:#3d3d4b; width:2px; display:inline-block; height: 20px; border-radius:2px; margin: 0 12px;"></p>';
 
   // Функция для обработки данных поста
-  function processPostData(data) {
+  function processPostData(serverId, data) {
     if (!data) return console.warn('Переданный ответ пуст');
 
     if (!data.id) return console.warn('Переданный ответ не содержит идентификатор поста');
@@ -43,7 +43,7 @@
 
     // Функция для обновления элемента
     const updatePost = () => {
-      const anchor = document.querySelector(`a[href="/sp/feed/${id}"]`);
+      const anchor = document.querySelector(`a[href="/${serverId}/feed/${id}"]`);
       if (!anchor) return false;
 
       const postEl = anchor.closest('.relative.space-y-4');
@@ -104,37 +104,46 @@
 
   const GET_METHOD_REGEXES = [
     // Конкретный пост
-    /^https:\/\/spworlds\.ru\/api\/[a-z0-9_]+\/posts\/[0-9a-fA-F-]+$/,
+    /^https:\/\/spworlds\.ru\/api\/(?<serverId>[a-z0-9_]+)\/posts\/[0-9a-fA-F-]+$/,
 
     // Посты аккаунта
-    /^https:\/\/spworlds\.ru\/api\/[a-z0-9_]+\/posts\/from\/account\/[0-9a-fA-F-]+(\?.*)?$/,
+    /^https:\/\/spworlds\.ru\/api\/(?<serverId>[a-z0-9_]+)\/posts\/from\/account\/[0-9a-fA-F-]+(\?.*)?$/,
 
     // Посты группы
-    /^https:\/\/spworlds\.ru\/api\/[a-z0-9_]+\/posts\/from\/group\/[0-9a-fA-F-]+(\?.*)?$/,
+    /^https:\/\/spworlds\.ru\/api\/(?<serverId>[a-z0-9_]+)\/posts\/from\/group\/[0-9a-fA-F-]+(\?.*)?$/,
 
     // Посты страницы новостей
-    /^https:\/\/spworlds\.ru\/api\/[a-z0-9_]+\/posts\?.*$/
+    /^https:\/\/spworlds\.ru\/api\/(?<serverId>[a-z0-9_]+)\/posts\?.*$/
   ];
 
   const checkGetRequest = async (url, options, response) => {
-    if (!GET_METHOD_REGEXES.some(regex => regex.test(url))) return;
+    let serverId = null;
+    for (const regex of GET_METHOD_REGEXES) {
+      const match = url.match(regex);
+      if (!match) continue;
+      serverId = match.groups.serverId;
+      break;
+    }
+    if (!serverId) return;
 
     try {
       const data = await response.json();
-      if (Array.isArray(data)) data.forEach(post => processPostData(post));
-      else processPostData(data);
+      if (Array.isArray(data)) data.forEach(post => processPostData(serverId, post));
+      else processPostData(serverId, data);
     } catch (error) {
       console.error('Ошибка при разборе ответа на получение поста(ов):', error);
     }
   };
 
-  const UPDATE_POST_REGEX = /^https:\/\/spworlds\.ru\/api\/[a-z0-9_]+\/posts\/[0-9a-fA-F-]+$/;
+  const UPDATE_POST_REGEX = /^https:\/\/spworlds\.ru\/api\/(?<serverId>[a-z0-9_]+)\/posts\/[0-9a-fA-F-]+$/;
 
   const checkPostRequest = async (url, options, response) => {
     const match = url.match(UPDATE_POST_REGEX);
     if (!match) return;
 
     const [serverUrl] = match;
+    const serverId = match.groups.serverId;
+    if (!serverId) return;
 
     const body = options?.body;
     if (!body) return;
@@ -153,7 +162,7 @@
         credentials: 'include'
       }).then(r => r.json());
       if (!json) return;
-      processPostData(json);
+      processPostData(serverId, json);
     } catch (error) {
       console.error('Ошибка кастомного получения поста:', error);
     }
