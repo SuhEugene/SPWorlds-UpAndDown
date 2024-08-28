@@ -7,6 +7,10 @@
 // @match        https://spworlds.ru/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=spworlds.ru
 // @grant        none
+// @license      MIT
+// @updateURL    https://github.com/SuhEugene/SPWorlds-UpAndDown/blob/master/spworlds-up-n-down.user.js?raw=true
+// @homepageURL  https://github.com/SuhEugene/SPWorlds-UpAndDown
+// @contributionURL https://github.com/SuhEugene/SPWorlds-UpAndDown
 // ==/UserScript==
 
 (function () {
