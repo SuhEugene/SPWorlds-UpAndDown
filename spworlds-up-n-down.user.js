@@ -33,7 +33,6 @@
     const id = data.id;
     const upvotes = data.upvotes;
     const downvotes = data.downvotes;
-    console.log(`ID: ${id}, Upvotes: ${upvotes}, Downvotes: ${downvotes}`);
 
     const updateAnchor = anchor => {
       console.warn('Заменяем ссылку...');
